@@ -41,23 +41,15 @@ function App() {
   }, [lastDrawnNumber, isSpinning]);
 
   return (
-    <div className="flex flex-col h-screen items-center">
+  <div className="flex flex-col h-screen items-stretch bg-gray-50 overflow-hidden">
       {/* Header */}
       <header className="flex-shrink-0 bg-white shadow-lg w-full">
-        <div className="flex items-center justify-center gap-4 py-2">
-          <img
-            src="/img/logo.png"
-            alt="Bingo izquierda"
-            className="h-16 md:h-24"
-          />
-          <h1 className="text-7xl md:text-9xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-none py-6">
+        <div className="flex items-center justify-center gap-2 py-2 px-2">
+          <img src="/img/logo.png" alt="Bingo izquierda" className="h-14 md:h-20" />
+          <h1 className="text-3xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent leading-none py-6 text-center">
             Bingo Amandayé
           </h1>
-          <img
-            src="/img/logo.png"
-            alt="Bingo derecha"
-            className="h-16 md:h-24"
-          />
+          <img src="/img/logo.png" alt="Bingo derecha" className="h-14 md:h-20" />
         </div>
       </header>
 
@@ -73,9 +65,8 @@ function App() {
       )}
 
       {/* Main content */}
-      <main className="flex-1 flex items-stretch gap-8 w-full px-4 min-h-0">
-        <div className="flex flex-col flex-1 basis-0 justify-center min-w-[320px] max-w-[500px]">
-          {/* Ruleta */}
+      <main className="flex-1 flex flex-col md:flex-row items-stretch gap-4 w-full px-2 py-2 min-h-0 overflow-auto">
+        <div className="flex flex-col flex-1 basis-0 justify-center items-center min-w-[220px] max-w-[400px] mx-auto">
           <BingoWheel
             currentNumber={currentNumber}
             isSpinning={isSpinning}
@@ -83,30 +74,22 @@ function App() {
             disabled={isGameComplete}
           />
         </div>
-        <div className="flex flex-col flex-1 basis-0 justify-center min-w-0">
+        <div className="flex flex-col flex-1 basis-0 justify-center min-w-0 mx-auto">
           <NumberGrid
             drawnNumbers={drawnNumbers}
             lastDrawnNumber={lastDrawnNumber}
           />
-
-          {/* Botón de reinicio */}
-          <div className="mt-4 w-full flex justify-end">
+          <div className="mt-2 w-full flex justify-end">
             <button
               onClick={handleReset}
-              className="w-max px-6 py-4 bg-gradient-to-r from-red-500 to-red-600 
-                         text-white font-bold rounded-lg hover:from-red-600 hover:to-red-700
-                         transition-all duration-300 transform hover:scale-105 active:scale-95
-                         shadow-lg hover:shadow-xl text-lg"
+              className="w-max px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-bold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl text-base"
             >
               🔄 Reiniciar Sorteo
             </button>
-
             {drawnCount === 76 && (
-              <div className="text-center p-4 bg-yellow-100 rounded-lg border-2 border-yellow-400 mt-4">
-                <div className="text-2xl">🎉</div>
-                <div className="text-lg font-bold text-yellow-800">
-                  ¡Sorteo Completado!
-                </div>
+              <div className="text-center p-2 bg-yellow-100 rounded-lg border-2 border-yellow-400 mt-2">
+                <div className="text-xl">🎉</div>
+                <div className="text-base font-bold text-yellow-800">¡Sorteo Completado!</div>
               </div>
             )}
           </div>
@@ -114,10 +97,9 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="bg-white shadow-inner py-2 px-4 text-center text-xs md:text-base w-full flex-shrink-0">
         <p>
-          🎯 Aplicación de Bingo Virtual del Amandayé Ipeguá • Números únicos
-          garantizados
+          🎯 Aplicación de Bingo Virtual del Amandayé Ipeguá • Números únicos garantizados
         </p>
       </footer>
     </div>
