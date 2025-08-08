@@ -15,9 +15,12 @@ function App() {
     drawnCount,
   } = useBingoGame();
 
+  const [resetVersion, setResetVersion] = useState(0);
+
   const handleReset = () => {
     if (drawnCount === 0) {
       reset();
+      setResetVersion(v => v + 1);
       return;
     }
 
@@ -26,6 +29,7 @@ function App() {
     );
 
     if (confirmed) {
+      setResetVersion(v => v + 1);
       reset();
     }
   };
