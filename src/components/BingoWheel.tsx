@@ -28,12 +28,12 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
     setActiveMode(prev => prev === modeId ? null : modeId);
   };
   return (
-    <div className="flex flex-col items-center space-y-6 w-full max-w-sm mx-auto">
+    <div className="flex flex-col items-center space-y-3 lg:space-y-6 w-full max-w-sm mx-auto">
       {/* Número actual */}
-      <div className="bg-white rounded-full w-40 h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 flex items-center justify-center shadow-2xl border-4 border-yellow-400">
-        <div className="text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800">
+      <div className="bg-white rounded-full w-32 h-32 lg:w-40 lg:h-40 xl:w-48 xl:h-48 flex items-center justify-center shadow-2xl border-4 border-yellow-400">
+        <div className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-800">
           {isSpinning ? (
-            <Dices className="w-16 h-16 lg:w-20 lg:h-20 xl:w-24 xl:h-24 animate-spin text-blue-600" />
+            <Dices className="w-12 h-12 lg:w-16 lg:h-16 xl:w-20 xl:h-20 animate-spin text-blue-600" />
           ) : (
             currentNumber
           )}
@@ -41,7 +41,7 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
       </div>
 
       {/* Botones de modalidades */}
-      <div className="grid grid-cols-2 gap-3 w-full">
+      <div className="grid grid-cols-2 gap-2 lg:gap-3 w-full">
         {bingoModes.map((mode) => {
           const isActive = activeMode === mode.id;
           return (
@@ -49,7 +49,7 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
               key={mode.id}
               onClick={() => selectMode(mode.id)}
               className={`
-                px-4 py-3 text-base lg:text-lg font-bold rounded-lg
+                px-2 lg:px-4 py-2 lg:py-3 text-sm lg:text-base font-bold rounded-lg
                 transition-all duration-300 transform hover:scale-105 active:scale-95
                 shadow-lg hover:shadow-xl text-white
                 bg-gradient-to-r ${isActive ? mode.activeColor : mode.color}
@@ -68,7 +68,7 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
         onClick={onSpin}
         disabled={disabled || isSpinning}
         className={`w-full
-          px-8 py-4 text-xl lg:text-2xl font-bold rounded-full
+          px-6 lg:px-8 py-3 lg:py-4 text-lg lg:text-xl font-bold rounded-full
           transition-all duration-300 transform
           ${disabled || isSpinning
             ? 'bg-gray-400 text-gray-600 cursor-not-allowed'

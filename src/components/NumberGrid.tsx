@@ -15,8 +15,8 @@ const NumberGrid: React.FC<NumberGridProps> = ({
   );
 
   return (
-    <div className="bg-white rounded-lg shadow-xl p-4 lg:p-6 xl:p-8 w-full h-full flex flex-col">
-      <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 text-gray-800">
+    <div className="bg-white rounded-lg shadow-xl p-2 lg:p-4 xl:p-6 w-full h-full flex flex-col">
+      <h2 className="text-xl lg:text-2xl xl:text-3xl font-bold text-center mb-2 lg:mb-4 text-gray-800">
         Números del Bingo
       </h2>
       <div className="grid grid-cols-19 gap-1 lg:gap-2 w-full flex-1 auto-rows-fr">
@@ -29,7 +29,7 @@ const NumberGrid: React.FC<NumberGridProps> = ({
               key={number}
               className={`
                 flex items-center justify-center
-                text-lg lg:text-2xl xl:text-3xl font-bold rounded
+                text-sm lg:text-lg xl:text-2xl font-bold rounded
                 transition-all duration-500
                 aspect-square min-h-0
                 ${
