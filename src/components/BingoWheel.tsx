@@ -7,50 +7,62 @@ interface BingoWheelProps {
   disabled: boolean;
 }
 
+interface BingoMode {
+  id: string;
+  label: string;
+  color: string;
+  activeColor: string;
+}
 const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSpin, disabled }) => {
+  const [activeModes, setActiveModes] = React.useState<Set<string>>(new Set());
+
+  const bingoModes: BingoMode[] = [
+    { id: 'horizontal', label: 'Línea Horizontal', color: 'from-blue-500 to-blue-600', activeColor: 'from-blue-700 to-blue-800' },
+    { id: 'vertical', label: 'Línea Vertical', color: 'from-green-500 to-green-600', activeColor: 'from-green-700 to-green-800' },
+    { id: 'terna', label: 'Terna', color: 'from-purple-500 to-purple-600', activeColor: 'from-purple-700 to-purple-800' },
+    { id: 'bingo', label: 'Bingo', color: 'from-red-500 to-red-600', activeColor: 'from-red-700 to-red-800' }
+  ];
+
+  const toggleMode = (modeId: string) => {
+    setActiveModes(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(modeId)) {
+        newSet.delete(modeId);
+      } else {
+        newSet.add(modeId);
+      }
+      return newSet;
+    });
+  };
   return (
     <div className="flex flex-col items-center space-y-8">
-      {/* Ruleta */}
-      <div className="relative">
-        <div 
-          className={`
-            w-64 h-64 md:w-80 md:h-80 rounded-full 
-            bg-gradient-to-br from-blue-500 to-blue-700 
-            border-8 border-yellow-400 
-            flex items-center justify-center
-            shadow-2xl relative overflow-hidden
-            ${isSpinning ? 'animate-spin-realistic' : ''}
-          `}
-        >
-          {/* Decoraciones de la ruleta */}
-          <div className="absolute inset-4 rounded-full border-4 border-yellow-300 opacity-50"></div>
-          <div className="absolute inset-8 rounded-full border-2 border-white opacity-30"></div>
-          
-          {/* Líneas divisorias para efecto visual */}
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-1 bg-yellow-300 opacity-60"
-              style={{
-                height: '30%',
-                top: '10%',
-                left: '50%',
-                transformOrigin: '50% 300%',
-                transform: `translateX(-50%) rotate(${i * 30}deg)`
-              }}
-            />
-          ))}
-          
-          {/* Número central */}
-          <div className="text-6xl md:text-8xl font-bold text-white drop-shadow-lg z-10">
-            {isSpinning ? '🎲' : currentNumber}
-          </div>
+      {/* Número actual */}
+      <div className="bg-white rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-2xl border-4 border-yellow-400">
+        <div className="text-4xl md:text-6xl font-bold text-gray-800">
+          {isSpinning ? '🎲' : currentNumber}
         </div>
-        
-        {/* Indicador superior */}
-        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-          <div className="w-0 h-0 border-l-4 border-r-4 border-b-6 border-transparent border-b-red-500"></div>
-        </div>
+      </div>
+
+      {/* Botones de modalidades */}
+      <div className="grid grid-cols-2 gap-4 w-full max-w-md">
+        {bingoModes.map((mode) => {
+          const isActive = activeModes.has(mode.id);
+          return (
+            <button
+              key={mode.id}
+              onClick={() => toggleMode(mode.id)}
+              className={`
+                px-4 py-3 text-sm md:text-base font-bold rounded-lg
+                transition-all duration-300 transform hover:scale-105 active:scale-95
+                shadow-lg hover:shadow-xl text-white
+                bg-gradient-to-r ${isActive ? mode.activeColor : mode.color}
+                ${isActive ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''}
+              `}
+            >
+              {isActive ? '✓ ' : ''}{mode.label}
+            </button>
+          );
+        })}
       </div>
 
       {/* Botón de girar */}
