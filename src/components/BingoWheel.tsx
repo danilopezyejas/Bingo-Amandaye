@@ -14,7 +14,7 @@ interface BingoMode {
   activeColor: string;
 }
 const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSpin, disabled }) => {
-  const [activeModes, setActiveModes] = React.useState<Set<string>>(new Set());
+  const [activeMode, setActiveMode] = React.useState<string | null>(null);
 
   const bingoModes: BingoMode[] = [
     { id: 'horizontal', label: 'Línea Horizontal', color: 'from-blue-500 to-blue-600', activeColor: 'from-blue-700 to-blue-800' },
@@ -23,16 +23,8 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
     { id: 'bingo', label: 'Bingo', color: 'from-red-500 to-red-600', activeColor: 'from-red-700 to-red-800' }
   ];
 
-  const toggleMode = (modeId: string) => {
-    setActiveModes(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(modeId)) {
-        newSet.delete(modeId);
-      } else {
-        newSet.add(modeId);
-      }
-      return newSet;
-    });
+  const selectMode = (modeId: string) => {
+    setActiveMode(prev => prev === modeId ? null : modeId);
   };
   return (
     <div className="flex flex-col items-center space-y-8">
@@ -46,16 +38,17 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
       {/* Botones de modalidades */}
       <div className="grid grid-cols-2 gap-4 w-full max-w-md">
         {bingoModes.map((mode) => {
-          const isActive = activeModes.has(mode.id);
+          const isActive = activeMode === mode.id;
           return (
             <button
               key={mode.id}
-              onClick={() => toggleMode(mode.id)}
+              onClick={() => selectMode(mode.id)}
               className={`
                 px-4 py-3 text-sm md:text-base font-bold rounded-lg
                 transition-all duration-300 transform hover:scale-105 active:scale-95
                 shadow-lg hover:shadow-xl text-white
                 bg-gradient-to-r ${isActive ? mode.activeColor : mode.color}
+                ${!isActive ? 'opacity-60' : 'opacity-100'}
                 ${isActive ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''}
               `}
             >
