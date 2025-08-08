@@ -31,7 +31,7 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
       {/* Número actual */}
       <div className="bg-white rounded-full w-32 h-32 md:w-40 md:h-40 flex items-center justify-center shadow-2xl border-4 border-yellow-400">
         <div className="text-4xl md:text-6xl font-bold text-gray-800">
-          {isSpinning ? <span className="animate-spin-dice">🎲</span> : currentNumber}
+          {isSpinning ? <span className="animate-spin">🎲</span> : currentNumber}
         </div>
       </div>
 
