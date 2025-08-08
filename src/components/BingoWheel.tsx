@@ -2,6 +2,7 @@ import React from 'react';
 import { Dices } from 'lucide-react';
 
 interface BingoWheelProps {
+  key={resetVersion}
   currentNumber: string;
   isSpinning: boolean;
   onSpin: () => void;
