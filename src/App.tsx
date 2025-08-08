@@ -72,6 +72,7 @@ function App() {
       <main className="flex-1 flex flex-col lg:flex-row items-stretch gap-2 lg:gap-4 w-full px-2 lg:px-4 py-2 lg:py-4 min-h-0 overflow-hidden">
         <div className="flex flex-col lg:w-1/3 justify-center items-center min-w-[280px]">
           <BingoWheel
+            key={resetVersion}
             currentNumber={currentNumber}
             isSpinning={isSpinning}
             onSpin={spin}
