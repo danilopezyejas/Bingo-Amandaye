@@ -57,7 +57,10 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
                 ${isActive ? 'ring-4 ring-yellow-400 ring-opacity-50' : ''}
               `}
             >
-              {isActive ? '✓ ' : ''}{mode.label}
+              <span className="inline-flex items-center gap-2">
+                {isActive && <span aria-hidden>✓</span>}
+                <span>{mode.label}</span>
+              </span>
             </button>
           );
         })}
