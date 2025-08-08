@@ -28,7 +28,7 @@ const BingoWheel: React.FC<BingoWheelProps> = ({ currentNumber, isSpinning, onSp
     setActiveMode(prev => prev === modeId ? null : modeId);
   };
   return (
-    <div className="flex flex-col items-center space-y-6 w-full max-w-sm mx-auto">
+    <div className="flex flex-col items-center space-y-6 w-full max-w-sm mx-auto p-8">
       {/* Número actual */}
       <div className="bg-white rounded-full w-40 h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56 flex items-center justify-center shadow-2xl border-4 border-yellow-400">
         <div className="text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-800">
