@@ -15,11 +15,11 @@ const NumberGrid: React.FC<NumberGridProps> = ({
   );
 
   return (
-    <div className="bg-white rounded-lg shadow-xl p-8 md:p-12 w-full">
-      <h2 className="text-lg md:text-3xl font-bold text-center mb-2 text-gray-800">
+    <div className="bg-white rounded-lg shadow-xl p-4 lg:p-6 xl:p-8 w-full h-full flex flex-col">
+      <h2 className="text-2xl lg:text-3xl xl:text-4xl font-bold text-center mb-4 text-gray-800">
         Números del Bingo
       </h2>
-      <div className="grid grid-cols-6 md:grid-cols-19 grid-rows-13 gap-1 md:gap-2 w-full">
+      <div className="grid grid-cols-19 gap-1 lg:gap-2 w-full flex-1 auto-rows-fr">
         {numbers.map((number) => {
           const isDrawn = drawnNumbers.has(number);
           const isLastDrawn = number === lastDrawnNumber;
@@ -29,9 +29,9 @@ const NumberGrid: React.FC<NumberGridProps> = ({
               key={number}
               className={`
                 flex items-center justify-center
-                text-2xl md:text-4xl font-bold rounded
+                text-lg lg:text-2xl xl:text-3xl font-bold rounded
                 transition-all duration-500
-                aspect-square px-2 py-4
+                aspect-square min-h-0
                 ${
                   isDrawn
                     ? isLastDrawn

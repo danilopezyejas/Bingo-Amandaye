@@ -7,10 +7,6 @@ export default {
         // Para NumberGrid: 19 columnas que puedan encogerse
         19: 'repeat(19, minmax(0, 1fr))',
       },
-      gridTemplateRows: {
-        // Para NumberGrid: 4 filas que puedan encogerse
-        4: 'repeat(4, minmax(0, 1fr))',
-      },
       keyframes: {
         // Animación realista de giro para la ruleta
         'spin-realistic': {
