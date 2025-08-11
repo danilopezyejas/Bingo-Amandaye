@@ -97,6 +97,12 @@ function App() {
                 <div className="text-base font-bold text-yellow-800">¡Sorteo Completado!</div>
               </div>
             )}
+            {drawnCount === 75 && (
+              <div className="text-center p-2 bg-yellow-100 rounded-lg border-2 border-yellow-400 mt-2">
+                <div className="text-xl">🎉</div>
+                <div className="text-base font-bold text-yellow-800">¡Sorteo Completado!</div>
+              </div>
+            )}
           </div>
         </div>
       </main>

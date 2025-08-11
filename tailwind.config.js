@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        // Para NumberGrid: 19 columnas que puedan encogerse
-        19: 'repeat(19, minmax(0, 1fr))',
+        // Para NumberGrid: 15 columnas que puedan encogerse
+        15: 'repeat(15, minmax(0, 1fr))',
       },
       keyframes: {
         // Animación realista de giro para la ruleta
